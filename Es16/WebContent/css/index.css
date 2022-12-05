@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+ }
+ body{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     background-image: url('sfondo5.png');
+     
+ }
+ #logoutbutton{
+ margin-bottom: 550px;
+ }
+
+ .container{
+     
+    width: 800px;
+    height: 400px;
+    border-style: solid;
+    border-width: thin;
+    border: solid blue;
+     background-color: #669999 ;
+} 
+.table{
+	
+    margin-top: 2.5%;
+    margin-left: 5%;
+    
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: thin;
+     background-color: #669999 ;
+}
+.scroller{
+   overflow: scroll;
+    margin-top: 2.5%;
+    margin-top: 10%;
+    margin-left: 12.5%;
+ 	
+    width: 70%;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: thin;
+   
+}
+.mainBar{
+    background-color: blue;
+    width: 30%;
+}
+#radiobutton{
+    width: 1%;
+    background-color: blue;
+}
+th,td{ 
+    border: 0.1px solid gray;
+    padding: 5px;
+}
+.restbuttons{
+    margin-left: 60%;
+   
+}
+
+
+
+
+

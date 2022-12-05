@@ -1,0 +1,42 @@
+CREATE TABLE ContiCorrenti(
+  Cod_Cc BIGINT NOT NULL, 
+  Cod_Anag_Saldo INT NOT NULL,
+  Importo_Saldo DOUBLE NOT NULL,
+  Fido DOUBLE,
+  CONSTRAINT PK_CC PRIMARY KEY(Cod_Cc),
+  CONSTRAINT FK_CC FOREIGN KEY(Cod_Anag_Saldo) REFERENCES Anagrafica(Cod_Anag)
+);
+
+insert into ContiCorrenti values (123456789100, 10001, 956.22, 3000.00);
+insert into ContiCorrenti values (123456789101, 10001, 2030.00, 3000.00);
+insert into ContiCorrenti values (123456789102, 10002, -145.78, 3000.00);
+insert into ContiCorrenti values (123456789103, 10003, -115.78, 3000.00);
+insert into ContiCorrenti values (123456789104, 10004, -443.78, 3000.00);
+insert into ContiCorrenti values (123456789105, 10008, 4156.22, 3000.44);
+insert into ContiCorrenti values (123456789106, 10009, 1446.22, 3000.00);
+insert into ContiCorrenti values (123456789107, 10011, 1956.22, 3000.00);
+insert into ContiCorrenti values (123456789108, 10012, 1051.46, 3000.00);
+insert into ContiCorrenti values (123456789109, 10015, 1718.22, 3000.00);
+insert into ContiCorrenti values (123456789110, 10020, 467.66, 3000.00);
+insert into ContiCorrenti values (123456789111, 10048, 933.25, 3000.00);
+insert into ContiCorrenti values (123456789112, 10050, 230.50, 2000.00);
+insert into ContiCorrenti values (123456789113, 10051, 1776.22, 2000.00);
+insert into ContiCorrenti values (123456789114, 10053, 3316.22, 2000.00);
+insert into ContiCorrenti values (123456789115, 10055, 6476.22, 3000.45);
+insert into ContiCorrenti values (123456789116, 20001, 3059.22, 2000.00);
+insert into ContiCorrenti values (123456789117, 20002, 4036.22, 2000.00);
+insert into ContiCorrenti values (123456789118, 20003, 3647.95, 3000.45);
+insert into ContiCorrenti values (123456789119, 20004, 157.22, 2000.00);
+insert into ContiCorrenti values (123456789120, 20008, -475.78, 3000.45);
+insert into ContiCorrenti values (123456789121, 20010, 1616.22, 2000.00);
+insert into ContiCorrenti values (123456789122, 20015, 3138.22, 2000.00);
+insert into ContiCorrenti values (123456789123, 20016, 142.22, 1000.00);
+insert into ContiCorrenti values (123456789124, 20017, 781.22, 1000.45);
+insert into ContiCorrenti values (123456789125, 20020, 256.22, 1000.45);
+insert into ContiCorrenti values (123456789126, 20021, 2556.22, 1000.45);
+insert into ContiCorrenti values (123456789127, 20022, 156.22, 1000.45);
+insert into ContiCorrenti values (123456789128, 20025, 456.22, 1000.45);
+insert into ContiCorrenti values (123456789129, 20025, 2056.22, 1000.45);
+insert into ContiCorrenti values (123456789130, 20030, 5000.22, 1000.45);
+insert into ContiCorrenti values (123456789131, 20030, 900.22, 1000.45);
+insert into ContiCorrenti values (123456789132, 20035, 679.70, 1000.45);

@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;	
+}
+
+body{
+	background: black;
+}
+
+.background{
+	position: relative;
+	width: 1052px;
+	height: 88%;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	background: green;
+}
+
+.form-box{
+	position: relative;
+	width: 900px;
+	height: 240px;
+	
+	font-size: 14px;
+	font-family: sans-serif;
+	
+	background: greenyellow;
+}
+
+.form-box .riga{
+	width: 100%;
+	height: 30px;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .riga h3{
+	margin-left: 10px;
+	margin-right: auto;
+	color: black;
+}
+
+.form-box .riga .cell1,
+.form-box .riga .cell2,
+.form-box .riga .cell3{
+	width: 300px;
+	height: 100%;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .riga .cell1 span,
+.form-box .riga .cell2 span,
+.form-box .riga .cell3 span{
+	margin-left: 10px;
+	margin-right: auto;
+}
+
+.form-box .riga .cell1 input[type=text],
+.form-box .riga .cell2 input[type=text],
+.form-box .riga .cell3 input[type=text]{
+	width: 175px;
+}
+
+.form-box .riga .cell1 input{
+	position: absolute;
+	right: 610;
+}
+
+.form-box .riga .cell2 input[type=text]{
+	position: absolute;
+	right: 310;
+}
+
+.form-box .riga .cell2 input[type=radio]{
+	margin-left: 35px;
+	margin-right: auto;
+}
+
+.form-box .riga .cell3 input{
+	position: absolute;
+	right: 10;
+}
+
+.form-box .riga .cell3 select{
+	width: 175px;
+	position: absolute;
+	right: 10;
+}
+
+.form-box .cell-double{
+	width: 600px;
+	height: 30px;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .cell-double span{
+	margin-left: 10px;
+	margin-right: auto;
+}
+
+.form-box .cell-double input{
+	width: 475px;
+	
+	position: absolute;
+	right: 310;
+}
+
+.form-box .riga-reduced{
+	width: 600px;
+	height: 30px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-box .box-cc{
+	position: absolute;
+	width: 300px;
+	height: 60px;
+	
+	right: 0;
+	bottom: 60px;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .box-cc input{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	height: 50px;
+	width: 175px;
+	
+	text-align: center;
+}
+
+.form-box .box-cc span{
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}
+
+.form-box .riga-reduced .cell1,
+.form-box .riga-reduced .cell2{
+	width: 300px;
+	height: 100%;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .riga-reduced .cell1 span,
+.form-box .riga-reduced .cell2 span{
+	margin-left: 10px;
+	margin-right: auto;
+}
+
+.form-box .riga-reduced .cell1 input[type=text],
+.form-box .riga-reduced .cell2 input[type=text]{
+	width: 175px;
+}
+
+.form-box .riga-reduced .cell1 input{
+	position: absolute;
+	right: 610;
+}
+
+.form-box .riga-reduced .cell2 input[type=text]{
+	position: absolute;
+	right: 310;
+}
+
+.form-box .riga-reduced .cell2 input[type=radio]{
+	margin-left: 35px;
+	margin-right: auto;
+}
+
+.form-box .riga-reduced .cell_spec{
+	width: 300px;
+	height: 30px;
+	
+	display: flex;
+	align-items: center;
+}
+
+.form-box .riga-reduced .cell_spec span{
+	margin-left: 10px;
+	margin-right: auto;
+}
+
+.form-box .riga-reduced .cell_spec input[type=date]{
+	position: absolute;
+	width: 20px;
+	bottom: 93.75px;
+	right: 610;
+}
+
+.form-box .riga-reduced .cell_spec input[type=text]{
+	width: 150px;
+	position: absolute;
+	right: 635;
+}
+
+.form-box .riga .cell3 button{
+	height: 20px;
+	width: 80px;
+	
+	margin-left: 210px;
+	margin-right: auto;
+	
+	display: flex;
+	justify-content: center;
+}
+
+.form-box .riga .cell3 a{
+	text-decoration: none;
+	color: black;
+}
+
+.form-box .riga .cell3 input[type=submit]{
+	position: absolute;
+	right: 105px;
+	height: 20px;
+	width: 80px;
+}

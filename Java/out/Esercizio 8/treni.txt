@@ -1,0 +1,22 @@
+0-Torino P.n
+6-Torino P.s
+8-Torino Dora
+12-Torino Stura
+17-Settimo
+25-Brandizzo
+29-Chivasso
+32-Castelrosso
+36-Torrazza P.
+40-Saluggia
+43-S.Antonino di s.
+47-Livorno
+51-Brianza
+57-Tronzano
+60-Santhia
+65-S.Germano v.
+79-Borgovercelli
+84-Vercelli
+101-Novara
+122-Magenta
+132-Rho
+153-Milano Centrale

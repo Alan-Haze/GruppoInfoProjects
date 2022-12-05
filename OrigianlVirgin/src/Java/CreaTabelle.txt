@@ -1,0 +1,64 @@
+CREATE TABLE Comuni(
+id_comuni INTEGER(7) NOT NULL PRIMARY KEY,
+descrizione VARCHAR(10)
+)
+
+CREATE TABLE Anagrafica(
+cod_anag INTEGER(10) NOT NULL PRIMARY KEY,
+cognome VARCHAR(30) NOT NULL ,
+nome VARCHAR(30) NOT NULL, 
+rag_soc VARCHAR(30),
+indirizzo  VARCHAR(30) NOT NULL  , 
+id_comune INTEGER(7),
+sesso  VARCHAR(30) NOT NULL , 
+data_nascita DATE NOT NULL , 
+luogo_nascita VARCHAR(30) NOT NULL, 
+cod_fiscale VARCHAR(30),
+partita_iva VARCHAR(30),
+telefono1 VARCHAR(30)NOT NULL ,
+telefono2 VARCHAR(30),
+email VARCHAR(30),
+FOREIGN KEY (id_comune) REFERENCES Comuni(id_comune)
+)
+
+CREATE TABLE Agenzie(
+cod_cab INTEGER(5) NOT NULL PRIMARY KEY,
+nome VARCHAR(30) NOT NULL,
+indirizzo VARCHAR(30) NOT NULL,
+città VARCHAR(20) NOT NULL,
+telefono VARCHAR(10) NOT NULL,
+fax VARCHAR(10) NOT NULL
+)
+CREATE TABLE UtentiAdmin(
+cod_user INTEGER(7) NOT NULL PRIMARY KEY,
+cognome VARCHAR(30) NOT NULL,
+nome VARCHAR(30) NOT NULL,
+n_matricola VARCHAR(10) NOT NULL,
+user VARCHAR(7) NOT NULL,
+password VARCHAR(7) NOT NULL,
+data_scad date,
+session_id VARCHAR(34) NOT NULL, 
+cod_cab INTEGER(5) NOT NULL,
+ FOREIGN KEY (cod_cab) REFERENCES Agenzie(cob_cab)
+)
+CREATE TABLE Conticorrenti(
+iso VARCHAR(2) NOT NULL,
+num_controllo INTEGER(2) NOT NULL, 
+cin  VARCHAR(1) NOT NULL,
+abi INTEGER(5) NOT NULL,
+cab INTEGER(5) NOT NULL,
+cod_cc INTEGER(12) NOT NULL PRIMARY KEY,
+cod_anag_cc INTEGER(10) NOT NULL,
+importo_saldo INTEGER(30) NOT NULL,
+importo_fido INTEGER(30) NOT NULL,
+FOREIGN KEY(cab) REFERENCES Agenzie (cod_cab),
+FOREIGN KEY(cod_anag_cc) REFERENCES Anagrafica(cod_anag)
+)
+
+INSERT INTO `Conticorrenti`(`iso`, `num_controllo`, `cin`, `abi`, `cab`, `cod_cc`, `cod_anag_cc`, `importo_saldo`, `importo_fido`) VALUES('no', '00', 'L', '00000', '10001', 1000001, ' 121123121', '00', '00')
+			
+
+INSERT INTO `UtentiAdmin`(`cod_user`, `cognome`, `nome`, `n_matricola`, `user`, `password`, `data_scad`, `session_id`, `cod_cab`) VALUES (1,'Liu','Alan',1,'admin','admin',2001-04-11,1,1)
+
+
+INSERT INTO `Comuni`(`id_comune`, `descrizione`) VALUES (1,'Milano')

@@ -1,0 +1,13 @@
+20001-iPhone3
+20002-iPhone4
+20003-iPhone4s
+20004-iPhone5
+30001-iPad
+30002-iPad2
+30003-iPad display Retina
+30004-iPad mini
+40001-iPod shuffle
+40002-iPod nano
+40003-iPod touch
+40004-iPod classic
+50001-Apple TV

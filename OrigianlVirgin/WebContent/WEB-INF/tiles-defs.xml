@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+"http://struts.apache.org/dtds/tiles-config_1_3.dtd">
+
+<tiles-definitions>
+	<!-- REINDIRIZZA INDEX -->
+	<definition name="tiles.index" path="/index.jsp">
+		<put name="formLogin" value="WEB-INF/jsp/formLogin.jsp"
+			type="page" />
+	</definition>
+	<!-- REINDIRIZZAMENTO HOME -->
+	<definition name="tiles.home" path="/home.jsp">
+		<put name="navbar" value="WEB-INF/jsp/navbar.jsp" type="page" />
+		<put name="homepage" value="WEB-INF/jsp/homepage.jsp" type="page" />
+
+	</definition>
+	<definition name="tiles.formInserimento" path="/formInserimento.jsp">
+		<put name="navbar" value="WEB-INF/jsp/navbar.jsp" type="page" />
+		<put name="formInserimento" value="WEB-INF/jsp/formInserisci.jsp" type="page" />
+	</definition>
+	<definition name="tiles.elenco" path="/elenco.jsp">
+		<put name="navbar" value="WEB-INF/jsp/navbar.jsp" type="page" />
+		<put name="elencodati" value="WEB-INF/jsp/tabelladati.jsp" type="page" />
+	</definition>
+	<definition name="tiles.formModifica" path="/formModifica.jsp">
+		<put name="navbar" value="WEB-INF/jsp/navbar.jsp" type="page" />
+		<put name="formModifica" value="WEB-INF/jsp/formModifica.jsp" type="page" />
+	</definition>
+	
+</tiles-definitions>

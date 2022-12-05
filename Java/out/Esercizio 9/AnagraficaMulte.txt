@@ -1,0 +1,50 @@
+10001-divieto di sosta-250
+10002-ztl-300
+10003-eccesso di velocità-150
+10005-mancata revisione-400
+10008-contromano-500
+10009-divieto di fermata-200
+10011-divieto di sosta-250
+10012-cintura di sicurezza-150
+10015-divieto di sosta-250
+10020-infrazione telefono-200
+10048-divieto di sosta-250
+10050-divieto di sosta-250
+10051-infrazione semaforica-225
+10053-infrazione semaforica-225
+10055-contromano-500
+20001-infrazione semaforica-225
+20002-infrazione telefono-200
+20003-infrazione semaforica-225
+20004-infrazione telefono-200
+20008-contromano-500
+20010-infrazione semaforica-225
+20015-ztl-300
+20016-contromano-500
+20017-ztl-300
+20020-infrazione semaforica-225
+20021-ztl-300
+20022-infrazione semaforica-225
+20025-contromano-500
+20030-ztl-300
+20035-infrazione semaforica-225
+20060-mancata revisione-400
+20065-ztl-300
+30001-contromano-500
+30002-infrazione telefono-200
+30003-mancata revisione-400
+30004-contromano-500
+30010-ztl-300
+30015-mancata revisione-400
+30018-contromano-500
+30020-ztl-300
+30025-mancata revisione-400
+30030-eccesso di velocità-150
+30035-eccesso di velocità-150
+30055-mancata revisione-400
+40001-eccesso di velocità-150
+40002-mancata revisione-400
+40003-eccesso di velocità-150
+40004-eccesso di velocità-150
+50000-eccesso di velocità-150
+50001-eccesso di velocità-150

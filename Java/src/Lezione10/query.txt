@@ -1,0 +1,245 @@
+CREATE TABLE ATTORI (
+CodAttore Integer NOT NULL PRIMARY KEY,
+Nome VARCHAR(30) NOT NULL,  
+Nazionalità VARCHAR(50),
+AnnoNascita date
+);
+
+CREATE TABLE FILM (
+CodFilm Integer PRIMARY KEY,
+
+Titolo VARCHAR(30),
+AnnoProduzione INT,
+Nazionalità VARCHAR(30),
+Regista VARCHAR(30),
+Genere VARCHAR(30)
+);
+CREATE TABLE RECITA (
+CodAttore Integer ,
+CodFilm Integer ,
+    FOREIGN KEY (CodAttore) REFERENCES ATTORI(CodAttore),
+     FOREIGN KEY (CodFilm) REFERENCES FILM(CodFilm)
+);
+
+CREATE TABLE SALE (
+CodSala Integer PRIMARY KEY,
+Posti Integer,
+Nome VARCHAR(30),
+Città VARCHAR(30)
+);
+
+CREATE TABLE PROIEZIONI(
+CodProiezione Integer PRIMARY KEY,
+CodFilm Integer ,
+CodSala Integer ,
+Incasso Integer,
+    DataProiezione date,
+    FOREIGN KEY (CodFilm) REFERENCES FILM(CodFilm),
+    FOREIGN KEY (CodSala) REFERENCES SALE(CodSala)
+);
+
+
+INSERT INTO ATTORI ("codattore", "nome", "annonascita", "nazionalità") VALUES (1, 'John', '2004-05-11', 'italiana');
+INSERT INTO FILM ("codfilm","titolo","annoproduzione","nazionalità","regista","genere") VALUES(1,'Scarface',2022,'italiana','Anna','Thriller');
+INSERT INTO PROIEZIONI("codproiezione", "incasso", "dataproiezione") VALUES(1,100,'2022-10-06');
+INSERT INTO SALE("codsala","posti","nome","città") VALUES (1,100,'Teatro','Milano')
+
+
+1.	SELECT SALE.Nome 
+	FROM SALE 
+	WHERE Città = "Pisa";
+2.	SELECT FILM.Titolo 
+	FROM FILM 
+	WHERE Regista = "F.Fellini" AND AnnoProduzione > 1960;
+3.	SELECT FILM.Titolo 
+	FROM FILM 
+	WHERE (Genere = "fantascienza" AND  Nazionalità = "giapponese") OR (AnnoProduzione > 1990 AND Nazionalità = "francese");
+4. 	SELECT FILM.Titolo 
+	FROM FILM 
+	WHERE Nazionalità = "francese" OR (Genere = "fantascienza" AND Nazionalità = "giapponese" AND AnnoProduzione > 1990);
+5. 	SELECT FILM.Titolo
+	FROM FILM
+	WHERE Regista = (SELECT Regista FROM FILM WHERE Titolo = "Casablanca"); 
+6.	SELECT FILM.Titolo, FILM.Genere 
+	FROM FILM 
+	INNER JOIN PROIEZIONI ON FILM.CodFilm = PROIEZIONI.CodFilm WHERE PROIEZIONI.DataProiezione = '2004/12/25';
+7.	SELECT F.Titolo, F.Genere
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+	WHERE S.Città = "Napoli" AND P.DataProiezione = '2004/12/25';
+8.	SELECT S.Nome
+	FROM PROIEZIONI AS P
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	INNER JOIN RECITA AS R ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodFilm = A.CodFilm
+	WHERE P.DataProiezione = '2004/12/25' AND A.Nome = "R.Williams";
+9.	SELECT F.Titolo
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE A.Nome = "M. Mastroianni" OR A.Nome = "S.Loren";
+10.	SELECT F.Titolo
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE F.CodFilm IN (
+	SELECT F.CodFilm
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE Nome = "M. Mastroiani") 
+	AND F.CodFilm IN (
+	SELECT F.CodFilm
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE Nome = "S.Loren");
+11.	SELECT F.Titolo, A.Nome
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE A.Nazionalità = "francese";
+12. SELECT F.Titolo, S.Nome
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	INNER JOIN SALE AS F ON P.CodSala = S.CodSala
+	WHERE S.Città = "Pisa" AND MONTH(P.DataProiezione) = 1 AND YEAR(P.DataProiezione) = 2005;
+13. SELECT count(*)
+	FROM SALE AS S
+	WHERE S.Città = "Pisa" AND S.Posti > 60;
+14.	SELECT SUM(S.Posti)
+	FROM SALE AS S
+	WHERE S.Città = "Pisa";
+15.	SELECT S.Città, count(*)
+	FROM SALE AS S
+	GROUP BY S.Città;
+16.	SELECT S.Città, count(*)
+	FROM SALE AS S
+	WHERE S.Posti > 60
+	GROUP BY S.Città;
+17. SELECT F.Regista, count(*)
+	FROM FILM AS F
+	WHERE F.AnnoProduzione > 1990
+	GROUP BY F.Regista;
+18. SELECT F.Regista, SUM(P.Incasso)
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	GROUP BY F.Regista;
+19.	SELECT F.Titolo, count(*), SUM(P.Incasso)
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	INNER JOIN RECITA AS R ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodFilm = A.CodFilm
+	WHERE A.Nome = "S.Spielberg" AND F.Città = "Pisa";
+20	SELECT F.Regista, A.CodAttore, count(*)
+	FROM RECITA AS R
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	GROUP BY F.Regista, A.CodAttore
+21.	SELECT F.Regista, F.Titolo, count(*)
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	HAVING count(*) < 6;
+22. SELECT F.CodFilm, F.Titolo, SUM(P.Incasso)
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	WHERE F.AnnoProduzione > 2000;
+23.	SELECT count(*)(SELECT IN PIU)
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	WHERE F.CodFilm IN
+	(SELECT F.CodFilm
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	WHERE A.AnnoNascita < 1970);
+24. SELECT F.Titolo, SUM(P.Incasso) GROUP BY F.Titolo
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	WHERE F.Genere = "fantascienza";
+25. SELECT F.Titolo, SUM(P.Incasso)GROUP BY F.Titolo
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	WHERE F.Genere = "fantascienza" AND P.DataProiezione > '2001/01/01';
+26.	SELECT F.Titolo, SUM(P.Incasso)
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	WHERE F.Genere == "fantascienza" AND P.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F 
+	WHERE  F.AnnoProduzione <= 2000);
+27.	SELECT S.Nome, SUM(P.Incasso)(MANCA PISA,RIFARE LE CONDIZIONI)
+	FROM PROIEZIONI AS P
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+28. SELECT F.Titolo
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+	WHERE S.Città != "Pisa";
+29. SELECT F.Titolo
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+	WHERE F.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	INNER JOIN SALE AS S ON P.CodSala = S.CodSala
+	WHERE S.Città != "Pisa");
+30.	SELECT F.Titolo
+	FROM PROIEZIONI AS P
+	INNER JOIN FILM AS F ON P.CodFilm = F.CodFilm
+	WHERE F.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	WHERE SUM(P.Incasso) > '500');
+31. SELECT F.Titolo
+	FROM FILM AS F 
+	WHERE F.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	INNER JOIN PROIEZIONI AS P ON F.CodFilm = P.CodFilm
+	WHERE SUM(P.Incasso) < '500');
+32. SELECT A.Nome
+	FROM RECITA AS R
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm
+	WHERE R.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	INNER JOIN RECITA AS R ON R.CodFilm = F.CodFilm
+	WHERE F.Regista = "Fellini");
+33.	SELECT F.Titolo
+	FROM FILM AS F
+	WHERE F.Regista = "Fellini" AND F.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	INNER JOIN RECITA AS R ON F.CodFilm = R.CodFilm
+	INNER JOIN ATTORI AS A ON R.CodAttore = A.CodAttore
+	A.Nazionalità = "italiana");
+34.	SELECT F.Titolo
+	FROM FILM AS F
+	WHERE F.CodFilm NOT IN
+	(SELECT F.CodFilm
+	FROM RECITA AS R
+	INNER JOIN FILM AS F ON R.CodFilm = F.CodFilm);
+35. SELECT *
+	FROM ATTORI AS A
+	JOIN RECITA as R ON R.CodAttore = A.CodAttore
+	JOIN FILM as F on F.CodFilm = R.CodFilm
+	WHERE F.AnnoProduzione > 1960 AND A.CodAttore NOT IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	WHERE F.Regista != "Fellini");
+	
+36. SELECT *
+	FROM ATTORI AS A
+	JOIN RECITA as R ON R.CodAttore = A.CodAttore
+	JOIN FILM as F on F.CodFilm = R.CodFilm
+	WHERE F.REGISTA=="Fellini" AND A.CodAttore IN
+	(SELECT F.CodFilm
+	FROM FILM AS F
+	WHERE  F.AnnoProduzione > 1960); ?

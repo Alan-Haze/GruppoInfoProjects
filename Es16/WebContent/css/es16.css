@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;   
+}
+body{
+    	
+     background-image: url('/Es16/png/sfondo5.png');
+   
+    
+}
+.container{
+    position: absolute;
+    width: 310px;
+    border-style: solid;
+    border-width: thin;
+    background-color: white;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 30px;
+    margin-right: 20px;
+} 
+#blue{
+  
+    background-color: blue;
+}
+#user{
+    grid-column: 2;
+}
+#submitbutton{
+    margin-left: 30px;
+}
+#userlabel{
+    margin: 15px;
+}
+#immagine{
+    margin-left: 22px;
+    margin-top: 7px;
+}

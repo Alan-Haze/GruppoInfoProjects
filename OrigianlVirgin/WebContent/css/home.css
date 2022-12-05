@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.sfondo{
+	position: relative;
+	width: 1052px;
+	height: 100%;
+	
+	margin-left: auto;
+	margin-right: auto;
+		
+	background-image: url('../png/sfondoIntesa.png');
+	background-repeat: no-repeat;
+}

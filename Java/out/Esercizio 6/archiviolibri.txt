@@ -1,0 +1,13 @@
+20001-Il fu Mattia Pascal
+20002-Lo Hobbit
+20003-Il Signore degli Anelli
+20004-Il ritratto di Dorian Gray
+30001-Leggermente fuori fuoco
+30002-Centomila gavette di ghiaccio
+30003-Norwegian Wood
+30004-L'odissea
+40001-La divina commedia
+40002-Kafka sulla spiaggia
+40003-L'Eneide
+40004-Java Tm
+50001-Oracle 8

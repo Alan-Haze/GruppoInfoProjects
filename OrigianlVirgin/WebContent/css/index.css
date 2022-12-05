@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.formBackground {
+	position: relative;
+	width: 1052px;
+	height: 100%;
+	background-image: url('../png/sfondoIntesa.png');
+	background-repeat: no-repeat;
+}
+
+.container1 {
+	position: relative;
+	width: 300px;
+	height: 115px;
+	margin-left: auto;
+	margin-top: 10%;
+	margin-bottom: auto;
+	border: solid greenyellow;
+	background: white;
+}
+
+.intestazione {
+	background: greenyellow;
+}
+
+.container2 {
+	position: absolute;
+	width: 70%;
+	top: 15%;
+}
+
+.container1 .container2 .row {
+	position: relative;
+	width: 100%;
+	height: 33px;
+	display: flex;
+	align-items: center;
+}
+
+.container1 .container2 .row input[type=text], 
+.container1 .container2 .row input[type=password]
+	{
+	position: absolute;
+	width: 100px;
+	right: 15px;
+	background: greenyellow;
+}
+
+.container1 .container2 .row input[type=submit] {
+	position: absolute;
+	width: 100px;
+	right: 15px;
+	background: greenyellow;
+}
+
+input {
+	cursor: pointer;
+}
+
+.container1 .img {
+	position: relative;
+	height: 84%;
+	width: 30%;
+	margin-right: 0;
+	margin-left: auto;
+}

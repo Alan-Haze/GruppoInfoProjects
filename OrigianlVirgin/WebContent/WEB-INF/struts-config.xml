@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+	<!-- IL NOME SARA IL NOME DEL BEAN CHE VOGLIAMO DARE AI BEAN ALL'INTERNO DELL'APLICATIVO, IL TYPE
+	SARA LA CLASSE CHE VOGLIAMO ASSOCIARE AL NOME DEL BEAN -->
+	<form-beans>
+		<form-bean name="userpasswordbean" type="Bean.UserPasswordLogin" />
+		<form-bean name="forminseriscibean" type="Bean.FormInserisci" />
+		<form-bean name="elencopersonebean" type="Bean.Persone"></form-bean>
+		<form-bean name="formmodificapersonE" type="Bean.FormModificaPersone"></form-bean>
+		<form-bean name="formmodificapersonA" type="Bean.FormModificaPersona"></form-bean>
+		<form-bean name="beanajax" type="Bean.PersoneAJAX"></form-bean>
+		
+	</form-beans>
+	
+	<!-- SEZIONE A CUI POSSIAMO ASSOCIARE DEI FORWARD SPECIFICI, POCHE PAROLE MAPPIAMO LE CONDIZIONI DI RITORNO 
+	DI UNA RICHIESTA CON PARTICOLARI JSP -->
+	<global-forwards>
+      <forward name="index" path="/index.do"/> 
+    </global-forwards>
+    
+    <action-mappings>
+        <!-- PATH è IL PERCORSO PER LA REQUEST INVIATA, AD ESEMPIO NELLA ACTION DEL FORM 
+        ABBIAMO DETTO ALL'INTERNO DI WEB.XML CHE TUTTO CIO CHE .DO è RICONDUCIBILE ALLA SEZIONE ACTION, ECCO
+        CHE ANDRA A CERCARLO ALL'INTERNO DELLO STRUTS CONFIG , UANDO TROVA UN .DO
+        ALLINTERNO DELLA SEZIONE ACTION E ANDRA A PRENDERE IL PATH
+        
+        -->
+        <!-- PER OGNI PAGINA AVREMO UN BEAN,UNA CLASSE(ACTION), E UNA JSP -->
+        <!-- IL TYPE SARA IL NOME DELLA CLASSE CHE VOGLIAMO COLLEGAR A QUESTO DETERMINATO ACTION/PATH -->
+        		<!-- IL NAME è IL NOME CHE ABBIAMO DICHIARATO NEL TAG FORM BEAN CON ATTRIBUTO NAME -->
+        <!-- IL FORWARD è LA RISPOSTA DI DOVE VOGLIAMO CHE SIA INVIATO IL RISULTATO CHE HA PRODOTTO
+        	LA NOSTRA ACTION -->
+        
+        <!--    HANDLE HOMEPAGE	    -->
+        <action path="/index" 
+        		type="action.Parti"
+        		>
+        		<forward name="success" path="tiles.index" />
+        	</action>   
+		<!-- <action path="/primapag" forward="tiles.primapag"></action> -->
+		
+		<!--     HANDLE LOGIN      -->
+		 <action path="/login"
+    			 type="action.CheckLogin"
+    			 name="userpasswordbean"
+        		 scope="session"
+    			 >
+    		<forward name="success" path="tiles.home"></forward>
+    		<forward name="failure" path="tiles.index"></forward>
+    	</action>
+    	
+    	<action path="/formInserimento" 
+    			type="action.CreaCampiInserisci"
+    			name="forminseriscibean"
+    			scope="session"
+    			>
+    		<forward name="success" path="tiles.formInserimento" />
+    	</action>
+
+    	<action path="/returnHome" forward="tiles.home"></action>
+    	<action path="/inserisciInDB"
+    			type="action.InsertInDB"
+    			name="forminseriscibean"
+    			scope="session"
+    		>
+    		<forward name="success" path="tiles.home"></forward>	
+    	</action>
+    	
+    	<action path="/elenco"
+    			type="action.CreaElenco"
+    			name="elencopersonebean"
+    			scope="session"
+    	>
+    		<forward name="success" path="tiles.elenco"></forward>	
+    	
+    	</action>
+    	
+    	<action path="/elenco2"
+        		type="action.CreaElenco2"
+        		name="elencopersonebean"
+        		scope="session">
+        	<forward name="success" path="tiles.elenco"></forward>		
+        </action>
+        
+       
+    	<action path="/bottoni4"
+    			type="action.Bottoni4"
+				scope="session"
+				parameter="metodo">
+			<forward name="success" path="tiles.formModifica"/>	
+       
+		</action> 
+		<action 
+    			path="/formModifica" 
+    			type="action.CreaCampiModificaAjax"
+    			name="beanajax"
+    			scope="session"
+    			>
+    		<forward name="success" path="tiles.formModifica" />
+    	</action> 
+    	
+		 <action 	
+				path= "/selCognome"
+				type="action.CreaCampiNomeAjax"
+				name="beanajax"
+				>
+				<!-- NON VERRA RICHIAMATO IL FORWARD -->
+				<forward name="success" path="tiles.formModifica"/>			
+		</action> 
+		 <action path="/modificaAjax" 
+    			type="action.CercaModificaAjax"
+    			parameter="metodo"
+    			name="beanajax"
+    			>
+    		<forward name="success" path="tiles.formModifica" />
+    	</action>
+	</action-mappings>
+	
+   	<controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" />
+ 
+  <!--  TILES PLUGIN CI PERMETTE LA COMPOSIZIONE DELLE PAGINE JSP -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+		<set-property property="definitions-config" 		value="/WEB-INF/tiles-defs.xml"/>
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+</struts-config>
+
